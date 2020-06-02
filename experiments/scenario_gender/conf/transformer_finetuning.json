@@ -26,7 +26,7 @@
       },
       "batch_size": 32,
       "num_workers": 16,
-      "loss": "bce",
+      "loss": "NLLLoss",
       "lr": 0.0001,
       "weight_decay": 0.0,
       "n_epoch": 8
@@ -41,7 +41,7 @@
       "num_workers": 8
     },
     "norm_scores": false,
-    "score_metric": "auroc",
+    "score_metric": "accuracy",
 
     "pretrained_model_path": "models/transf_model.p",
     "use_batch_norm": false
