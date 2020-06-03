@@ -71,7 +71,7 @@
   "save_model": true,
   "model_path": {
     "model": "models/mles_model.p",
-    "only_encoder": false
+    "only_encoder": true
   },
 
   "output": {

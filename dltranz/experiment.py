@@ -41,6 +41,7 @@ def get_epoch_score_metric(metric_name):
     m = {
         'auroc': ROC_AUC,
         'accuracy': Accuracy,
+        'binary_accuracy': BinaryAccuracy,
         'auroc_labeled': ROC_AUC_labeled,
         'accuracy_labeled' : Accuracy_labeled
     }.get(metric_name)
@@ -203,9 +204,15 @@ class CustomMetric(Metric):
             return 0.0
         return self.num_value / self.denum_value
 
+
 class Accuracy_labeled(CustomMetric):
     def __init__(self):
         super().__init__(func = lambda x,y: (torch.argmax(x['labeled'],1) == y).float().mean())
+
+
+class BinaryAccuracy(CustomMetric):
+    def __init__(self):
+        super().__init__(func = lambda x,y: ((x>0.5) == y).float().mean())
 
 
 class ROC_AUC_labeled(CustomMetric):

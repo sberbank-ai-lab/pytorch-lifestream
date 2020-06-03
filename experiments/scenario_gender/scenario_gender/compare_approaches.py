@@ -26,16 +26,14 @@ def get_scores(args):
     result = []
     valid_scores, test_scores = load_scores(conf, **params)
     for fold_n, (valid_fold, test_fold) in enumerate(zip(valid_scores, test_scores)):
-        valid_fold['pred'] = np.argmax(valid_fold.values, 1)
-        test_fold['pred'] = np.argmax(test_fold.values, 1)
         valid_fold = valid_fold.merge(df_target, on=COL_ID, how='left')
         test_fold = test_fold.merge(test_target, on=COL_ID, how='left')
 
         result.append({
             'name': name,
             'fold_n': fold_n,
-            'oof_accuracy': (valid_fold['pred'] == valid_fold[COL_TARGET]).mean(),
-            'test_accuracy': (test_fold['pred'] == test_fold[COL_TARGET]).mean(),
+            'oof_accuracy': ((valid_fold.iloc[:, 0]>0.5) == valid_fold[COL_TARGET]).mean(),
+            'test_accuracy': ((test_fold.iloc[:, 0]>0.5) == test_fold[COL_TARGET]).mean(),
         })
 
     return result
