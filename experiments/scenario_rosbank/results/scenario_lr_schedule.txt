@@ -1,0 +1,40 @@
+------------------------------------------------------------------------------------------------------------------------
+Vector testing report
+Params:
+    conf: "conf/embeddings_validation_short_1611970700.hocon"
+
+Collected 15 files with 0 errors
+
+------------------------------------------------------------------------------------------------------------------------
+Metric: "auroc"
+                                                   scores_valid                                                                                                                                                                                             
+                                                           mean  t_pm t_int_l t_int_h   std                           values t_f_stat t_f_alpha t_t_stat t_t_alpha t_delta t_delta_pm t_delta_l t_delta_h t_delta_pp t_delta_pm_pp t_delta_l_pp t_delta_h_pp
+model_name feature_name                                                                                                                                                                                                                                     
+lgbm       emb_mles__lr_reduce_on_plateau                 0.821 0.010   0.811   0.831 0.008  [0.832 0.809 0.822 0.822 0.821]    1.026     0.510   -0.427     0.340  -0.002      0.012    -0.014     0.010     -0.272         1.469       -1.741        1.197
+           emb_mles__lr_reduce_on_plateau_x2epochs        0.821 0.010   0.811   0.830 0.008  [0.830 0.808 0.823 0.822 0.820]    1.109     0.539   -0.560     0.295  -0.003      0.012    -0.015     0.009     -0.350         1.442       -1.792        1.092
+           mles_embeddings                                0.823 0.010   0.813   0.834 0.008  [0.833 0.810 0.826 0.823 0.825]    1.000     0.500    0.000     0.500   0.000      0.012    -0.012     0.012      0.000         1.479       -1.479        1.479
+                                                   scores_test                                                                                                                                                                                             
+                                                          mean  t_pm t_int_l t_int_h   std                           values t_f_stat t_f_alpha t_t_stat t_t_alpha t_delta t_delta_pm t_delta_l t_delta_h t_delta_pp t_delta_pm_pp t_delta_l_pp t_delta_h_pp
+model_name feature_name                                                                                                                                                                                                                                    
+lgbm       emb_mles__lr_reduce_on_plateau                0.841 0.005   0.836   0.847 0.004  [0.837 0.847 0.837 0.843 0.842]    0.765     0.401   -0.274     0.396  -0.001      0.006    -0.007     0.005     -0.085         0.716       -0.801        0.631
+           emb_mles__lr_reduce_on_plateau_x2epochs       0.841 0.003   0.838   0.844 0.002  [0.842 0.843 0.837 0.843 0.841]    2.834     0.831   -0.488     0.319  -0.001      0.005    -0.006     0.004     -0.116         0.548       -0.664        0.432
+           mles_embeddings                               0.842 0.005   0.837   0.847 0.004  [0.842 0.847 0.841 0.843 0.837]    1.000     0.500    0.000     0.500   0.000      0.006    -0.006     0.006      0.000         0.666       -0.666        0.666
+
+------------------------------------------------------------------------------------------------------------------------
+Metric: "accuracy"
+                                                   scores_valid                                                                                                                                                                                             
+                                                           mean  t_pm t_int_l t_int_h   std                           values t_f_stat t_f_alpha t_t_stat t_t_alpha t_delta t_delta_pm t_delta_l t_delta_h t_delta_pp t_delta_pm_pp t_delta_l_pp t_delta_h_pp
+model_name feature_name                                                                                                                                                                                                                                     
+lgbm       emb_mles__lr_reduce_on_plateau                 0.746 0.012   0.734   0.758 0.010  [0.761 0.737 0.739 0.747 0.748]    2.324     0.783   -0.113     0.456  -0.001      0.018    -0.019     0.017     -0.119         2.418       -2.537        2.299
+           emb_mles__lr_reduce_on_plateau_x2epochs        0.744 0.008   0.735   0.752 0.007  [0.754 0.737 0.743 0.740 0.744]    4.788     0.921   -0.463     0.328  -0.003      0.017    -0.020     0.013     -0.446         2.223       -2.669        1.777
+           mles_embeddings                                0.747 0.018   0.729   0.765 0.015  [0.766 0.730 0.746 0.737 0.758]    1.000     0.500    0.000     0.500   0.000      0.021    -0.021     0.021      0.000         2.859       -2.859        2.859
+                                                   scores_test                                                                                                                                                                                             
+                                                          mean  t_pm t_int_l t_int_h   std                           values t_f_stat t_f_alpha t_t_stat t_t_alpha t_delta t_delta_pm t_delta_l t_delta_h t_delta_pp t_delta_pm_pp t_delta_l_pp t_delta_h_pp
+model_name feature_name                                                                                                                                                                                                                                    
+lgbm       emb_mles__lr_reduce_on_plateau                0.761 0.015   0.746   0.777 0.012  [0.772 0.776 0.746 0.756 0.756]    0.688     0.363    1.050     0.838   0.008      0.017    -0.009     0.024      1.008         2.215       -1.207        3.224
+           emb_mles__lr_reduce_on_plateau_x2epochs       0.757 0.008   0.748   0.765 0.007  [0.754 0.752 0.758 0.752 0.768]    2.363     0.787    0.580     0.711   0.003      0.013    -0.010     0.016      0.425         1.687       -1.263        2.112
+           mles_embeddings                               0.754 0.013   0.741   0.766 0.010  [0.766 0.760 0.742 0.744 0.756]    1.000     0.500    0.000     0.500   0.000      0.015    -0.015     0.015      0.000         2.000       -2.000        2.000
+
+------------------------------------------------------------------------------------------------------------------------
+End of report.     Current time: 2021-01-30 01:38:49
+------------------------------------------------------------------------------------------------------------------------

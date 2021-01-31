@@ -1,1 +1,57 @@
-[{"fold_id": 0, "model_name": "nn", "feature_name": "cpc_finetuning_0450", "scores_train": {"auroc": 0.8500029915637901, "cnt_samples": 450, "cnt_features": 512}, "scores_valid": {"auroc": 0.7604589100885397, "cnt_samples": 900, "cnt_features": 512}, "scores_test": {"auroc": 0.7791297752716362, "cnt_samples": 500, "cnt_features": 512}}, {"fold_id": 1, "model_name": "nn", "feature_name": "cpc_finetuning_0450", "scores_train": {"auroc": 0.8101851851851851, "cnt_samples": 450, "cnt_features": 512}, "scores_valid": {"auroc": 0.7893602693602695, "cnt_samples": 900, "cnt_features": 512}, "scores_test": {"auroc": 0.7926992135331651, "cnt_samples": 500, "cnt_features": 512}}, {"fold_id": 2, "model_name": "nn", "feature_name": "cpc_finetuning_0450", "scores_train": {"auroc": 0.8162377745711079, "cnt_samples": 450, "cnt_features": 512}, "scores_valid": {"auroc": 0.7366554433221101, "cnt_samples": 900, "cnt_features": 512}, "scores_test": {"auroc": 0.7846202041186461, "cnt_samples": 500, "cnt_features": 512}}, {"fold_id": 3, "model_name": "nn", "feature_name": "cpc_finetuning_0450", "scores_train": {"auroc": 0.8590468173801508, "cnt_samples": 450, "cnt_features": 512}, "scores_valid": {"auroc": 0.7751091158498565, "cnt_samples": 900, "cnt_features": 512}, "scores_test": {"auroc": 0.8002011508466471, "cnt_samples": 500, "cnt_features": 512}}, {"fold_id": 4, "model_name": "nn", "feature_name": "cpc_finetuning_0450", "scores_train": {"auroc": 0.8475428892095559, "cnt_samples": 450, "cnt_features": 512}, "scores_valid": {"auroc": 0.7593785524820007, "cnt_samples": 900, "cnt_features": 512}, "scores_test": {"auroc": 0.7893851708957809, "cnt_samples": 500, "cnt_features": 512}}]
+[
+  {
+    "fold_id": "0",
+    "model_name": "nn",
+    "feature_name": "cpc_finetuning_0450",
+    "scores_valid": {
+      "auroc": 0.6766967177391052
+    },
+    "scores_test": {
+      "auroc": 0.6812089085578918
+    }
+  },
+  {
+    "fold_id": "1",
+    "model_name": "nn",
+    "feature_name": "cpc_finetuning_0450",
+    "scores_valid": {
+      "auroc": 0.7409502267837524
+    },
+    "scores_test": {
+      "auroc": 0.7696822881698608
+    }
+  },
+  {
+    "fold_id": "2",
+    "model_name": "nn",
+    "feature_name": "cpc_finetuning_0450",
+    "scores_valid": {
+      "auroc": 0.7790746688842773
+    },
+    "scores_test": {
+      "auroc": 0.7896984815597534
+    }
+  },
+  {
+    "fold_id": "3",
+    "model_name": "nn",
+    "feature_name": "cpc_finetuning_0450",
+    "scores_valid": {
+      "auroc": 0.7531113624572754
+    },
+    "scores_test": {
+      "auroc": 0.7566899061203003
+    }
+  },
+  {
+    "fold_id": "4",
+    "model_name": "nn",
+    "feature_name": "cpc_finetuning_0450",
+    "scores_valid": {
+      "auroc": 0.7604389190673828
+    },
+    "scores_test": {
+      "auroc": 0.7850983142852783
+    }
+  }
+]

@@ -1,0 +1,105 @@
+{
+  data_module: {
+    type: map
+    setup: {
+      col_id: cl_id
+      dataset_files: {
+        data_path: "data/train_trx.parquet"
+      }
+      split_by: files
+      valid_size: 0.05
+      valid_split_seed: 42
+    }
+    train: {
+      min_seq_len: 25
+      augmentations: [
+        [DropoutTrx, {trx_dropout: 0.01}]
+        [SeqLenLimit, {max_seq_len: 1200}]
+      ]
+      replace_token: {
+        replace_prob: 0.15, skip_first: 1
+      }
+      num_workers: 8
+      batch_size: 128
+    }
+    valid: {
+      augmentations: [
+        [SeqLenLimit, {max_seq_len: 1200}]
+      ]
+      num_workers: 16
+      batch_size: 256
+    }
+    replace_token: {
+      replace_prob: 0.15,
+      skip_first: 1
+    }
+  }
+
+  seed_everything: 42
+  trainer: {
+    gpus: 1
+    auto_select_gpus: False
+
+    max_epochs: 100
+
+    checkpoint_callback: False
+    deterministic: True
+  }
+  logger_name: rtd_model
+
+  params: {
+    data_module_class: dltranz.data_load.data_module.rtd_data_module.RtdDataModuleTrain
+    pl_module_class: dltranz.lightning_modules.rtd_module.RtdModule
+
+    encoder_type: rnn,
+    rnn: {
+      type: lstm,
+      hidden_size: 512,
+      bidir: False,
+      trainable_starter: static
+    },
+    trx_encoder: {
+      norm_embeddings: False,
+      embeddings_noise: 0.0003,
+      embeddings: {
+        mcc: {in: 100, out: 24},
+        channel_type: {in: 4, out: 4},
+        currency: {in: 4, out: 4},
+        trx_category: {in: 10, out: 4}
+      },
+      numeric_values: {
+        amount: identity
+      }
+    },
+    use_normalization_layer: True,
+    head: {
+      pred_all_states: True,
+      pred_all_states_mean: False,
+      pred_flatten: True,
+      explicit_lengths: False,
+      norm_input: False,
+      use_batch_norm: False
+    }
+    lr_scheduler: {
+      ReduceLROnPlateau: True,
+      patience: 10
+    },
+    train: {
+      loss: bce,
+      lr: 0.001,
+      weight_decay: 0.0,
+      use_best_epoch: True
+    }
+    norm_scores: False,
+    score_metric: auroc
+  }
+
+  model_path: "models/rtd_model.p"
+
+  include "dataset_inference_file.hocon"
+
+  output: {
+    path: data/rtd_embeddings,
+    format: pickle,
+  }
+}

@@ -15,12 +15,16 @@
       norm_embeddings: false,
       embeddings_noise: 0.003,
       embeddings: {
-        mcc_code: {in: 200, out: 48},
-        tr_type: {in: 100, out: 24}
+        mcc: {in: 100, out: 48},
+        channel_type: {in: 4, out: 48},
+        currency: {in: 4, out: 48},
+        trx_category: {in: 10, out: 24}
       },
       numeric_values: {
         amount: identity
       }
+      was_logified: true
+      log_scale_factor: 1
     },
     rnn: {
       type: gru,
@@ -41,7 +45,7 @@
     }
   }
 
-  random_model: true
+  random_model: True
 
   include "dataset_inference_file.hocon"
 
