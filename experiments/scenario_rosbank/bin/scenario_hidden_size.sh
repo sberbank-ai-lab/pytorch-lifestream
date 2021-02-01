@@ -12,3 +12,12 @@ do
     output.path="data/emb_mles__$SC_SUFFIX" \
     --conf "conf/mles_params.hocon"
 done
+
+# Compare
+rm results/scenario_rosbank__hidden_size.txt
+# rm -r conf/embeddings_validation.work/
+python -m embeddings_validation \
+    --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 \
+    --conf_extra \
+      'report_file: "../results/scenario_rosbank__hidden_size.txt",
+      auto_features: ["../data/emb_mles__hidden_size_*.pickle"]'
