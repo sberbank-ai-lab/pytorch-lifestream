@@ -7,16 +7,17 @@ python ../../pl_train_module.py \
     model_path="models/mles_model_for_finetuning.p" \
     --conf conf/mles_params.hocon
 
-python ../../pl_fit_target.py --conf conf/pl_fit_finetuning_mles.hocon
+python ../../pl_fit_target.py \
+    params.rnn.type="gru" params.rnn.hidden_size=512 \
+    params.pretrained_model_path="models/mles_model_for_finetuning.p" \
+    --conf conf/pl_fit_finetuning_mles.hocon
 
 # Fine tune the CPC model in supervised mode and save scores to the file
 python ../../pl_fit_target.py --conf conf/pl_fit_finetuning_cpc.hocon
 
-# Fine tune the RTD model in supervised mode and save scores to the file
-python ../../pl_fit_target.py --conf conf/pl_fit_finetuning_rtd.hocon
-
-# Fine tune the NSP model in supervised mode and save scores to the file
+# Fine tune the NSP and RTD model in supervised mode and save scores to the file
 python ../../pl_fit_target.py --conf conf/pl_fit_finetuning_nsp.hocon
+python ../../pl_fit_target.py --conf conf/pl_fit_finetuning_rtd.hocon
 
 # Compare
 rm results/scenario_rosbank_baselines_supervised.txt
