@@ -9,4 +9,4 @@ split_dataset          : Train size: 9717 clients
 split_dataset          : Test size: 500 clients
 save_features          : Saved to: "/mnt/dnurlybay/pytorch-lifestream/experiments/scenario_rosbank/data/train_trx.parquet"
 save_features          : Saved to: "/mnt/dnurlybay/pytorch-lifestream/experiments/scenario_rosbank/data/test_trx.parquet"
-run                    : Data collected in 22 sec (0:00:22.377502)
+run                    : Data collected in 24 sec (0:00:24.389640)

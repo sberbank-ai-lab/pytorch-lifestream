@@ -10,42 +10,45 @@
         metric: cosine
     }
 
-    encoder_type: rnn,
+    encoder_type: rnn
+    rnn: {
+      type: gru
+      hidden_size: 1024
+      bidir: false
+      trainable_starter: static
+    }
+
     trx_encoder: {
-      norm_embeddings: false,
-      embeddings_noise: 0.003,
+      norm_embeddings: false
+      embeddings_noise: 0.003
       embeddings: {
-        mcc: {in: 100, out: 48},
-        channel_type: {in: 4, out: 48},
-        currency: {in: 4, out: 48},
+        mcc: {in: 100, out: 48}
+        channel_type: {in: 4, out: 48}
+        currency: {in: 4, out: 48}
         trx_category: {in: 10, out: 24}
-      },
+      }
       numeric_values: {
         amount: identity
       }
       was_logified: true
       log_scale_factor: 1
-    },
-    rnn: {
-      type: gru,
-      hidden_size: 1024,
-      bidir: false,
-      trainable_starter: static
-    },
+    }
+    
     head_layers: [
-        [NormEncoder, {}],
+      [NormEncoder, {}]
     ]
+
     train: {
-      sampling_strategy: HardNegativePair,
-      neg_count: 5,
-      loss: ContrastiveLoss,
-      margin: 0.5,
-      lr: 0.002,
+      sampling_strategy: HardNegativePair
+      neg_count: 5
+      loss: ContrastiveLoss
+      margin: 0.5
+      lr: 0.002
       weight_decay: 0.0
     }
   }
 
-  random_model: True
+  random_model: true
 
   include "dataset_inference_file.hocon"
 

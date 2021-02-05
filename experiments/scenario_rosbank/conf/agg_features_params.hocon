@@ -64,36 +64,39 @@
     encoder_type: agg_features
     trx_encoder: {
       embeddings: {
-        mcc: {in: 100},
-        channel_type: {in: 4},
-        currency: {in: 4},
+        mcc: {in: 100}
+        channel_type: {in: 4}
+        currency: {in: 4}
         trx_category: {in: 10}
-      },
+      }
       numeric_values: {
         amount: identity
       }
       was_logified: true
       log_scale_factor: 1
-    },
-    use_normalization_layer: true,
-    norm_scores: false,
-    lr_scheduler: {
-      step_size: 10,
-      step_gamma: 0.9025
-    },
-    head_layers: [
-        [BatchNorm1d, {num_features: "{seq_encoder.embedding_size}"}]
-        [NormEncoder, {}],
-    ]
+    }
 
+    use_normalization_layer: true
+    norm_scores: false
+
+    lr_scheduler: {
+      step_size: 10
+      step_gamma: 0.9025
+    }
+
+    head_layers: [
+      [BatchNorm1d, {num_features: "{seq_encoder.embedding_size}"}]
+      [NormEncoder, {}]
+    ]
+    
     train: {
-      sampling_strategy: HardNegativePair,
-      neg_count: 5,
-      loss: MarginLoss,
-      margin: 0.2,
-      beta: 0.4,
-      lr: 0.002,
-      weight_decay: 0.0,
+      sampling_strategy: HardNegativePair
+      neg_count: 5
+      loss: MarginLoss
+      margin: 0.2
+      beta: 0.4
+      lr: 0.002
+      weight_decay: 0.0
     }
   }
 

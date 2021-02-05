@@ -19,7 +19,7 @@ python ../../pl_fit_target.py --conf conf/pl_fit_finetuning_rtd.hocon
 python ../../pl_fit_target.py --conf conf/pl_fit_finetuning_nsp.hocon
 
 # Compare
-rm results/scenario_rosbank_baselines_supervised.txt.txt
+rm results/scenario_rosbank_baselines_supervised.txt
 # rm -r conf/embeddings_validation.work/
 python -m embeddings_validation \
     --conf conf/embeddings_validation_baselines_supervised.hocon --workers 10 --total_cpu_count 20

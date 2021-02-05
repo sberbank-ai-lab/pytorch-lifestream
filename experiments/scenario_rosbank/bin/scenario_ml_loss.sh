@@ -50,7 +50,6 @@ python ../../pl_inference.py \
     output.path="data/emb_mles__$SC_SUFFIX" \
     --conf "conf/mles_params.hocon"
 
-
 # TripletLoss
 export SC_SUFFIX="loss_triplet"
 python ../../pl_train_module.py \

@@ -17,10 +17,10 @@ do
 done
 
 # Compare
-rm results/scenario_projection_head.txt
+rm results/scenario_rosbank_projection_head.txt
 # rm -r conf/embeddings_validation.work/
 python -m embeddings_validation \
     --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 \
     --conf_extra \
-      'report_file: "../results/scenario_projection_head.txt",
+      'report_file: "../results/scenario_rosbank_projection_head.txt",
       auto_features: ["../data/emb_mles__projection_head_*.pickle"]'

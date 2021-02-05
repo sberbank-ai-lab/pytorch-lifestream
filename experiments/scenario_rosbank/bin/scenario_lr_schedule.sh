@@ -28,6 +28,7 @@ python ../../pl_inference.py \
 export SC_SUFFIX="lr_cosine_annealing"
 python ../../pl_train_module.py \
     logger_name=${SC_SUFFIX} \
+    params.train.lr_scheduler.n_epoch=150 \
     params.lr_scheduler.CosineAnnealing=true \
     model_path="models/mles__$SC_SUFFIX.p" \
     --conf "conf/mles_params.hocon"
@@ -42,5 +43,5 @@ rm results/rm results/scenario_rosbank_lr_schedule.txt
 python -m embeddings_validation \
     --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 \
     --conf_extra \
-      'report_file: "../results/scenario_lr_schedule.txt",
+      'report_file: "../results/scenario_rosbank_lr_schedule.txt",
       auto_features: ["../data/emb_mles__lr_*.pickle"]'

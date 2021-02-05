@@ -7,7 +7,6 @@ do
             embedding_validation_results.output_path="results/fit_target_${SC_AMOUNT}_results.json" \
             --conf conf/pl_fit_target.hocon
 
-      echo $SC_AMOUNT "finetuning"
       python ../../pl_fit_target.py \
             logger_name="mles_finetuning_${SC_AMOUNT}" \
             data_module.train.labeled_amount=$SC_AMOUNT \
@@ -18,6 +17,7 @@ do
 
       python ../../pl_fit_target.py \
             logger_name="cpc_finetuning_${SC_AMOUNT}" \
+            data_module.train.drop_last=true \
             data_module.train.labeled_amount=$SC_AMOUNT \
             trainer.max_epochs=10 \
             embedding_validation_results.feature_name="cpc_finetuning_${SC_AMOUNT}" \

@@ -4,10 +4,10 @@
     "model_name": "nn",
     "feature_name": "cpc_finetuning_0450",
     "scores_valid": {
-      "auroc": 0.6766967177391052
+      "auroc": 0.6181268692016602
     },
     "scores_test": {
-      "auroc": 0.6812089085578918
+      "auroc": 0.6381757855415344
     }
   },
   {
@@ -15,10 +15,10 @@
     "model_name": "nn",
     "feature_name": "cpc_finetuning_0450",
     "scores_valid": {
-      "auroc": 0.7409502267837524
+      "auroc": 0.7330440282821655
     },
     "scores_test": {
-      "auroc": 0.7696822881698608
+      "auroc": 0.7519248723983765
     }
   },
   {
@@ -26,10 +26,10 @@
     "model_name": "nn",
     "feature_name": "cpc_finetuning_0450",
     "scores_valid": {
-      "auroc": 0.7790746688842773
+      "auroc": 0.7135053873062134
     },
     "scores_test": {
-      "auroc": 0.7896984815597534
+      "auroc": 0.7153550386428833
     }
   },
   {
@@ -37,10 +37,10 @@
     "model_name": "nn",
     "feature_name": "cpc_finetuning_0450",
     "scores_valid": {
-      "auroc": 0.7531113624572754
+      "auroc": 0.7537747621536255
     },
     "scores_test": {
-      "auroc": 0.7566899061203003
+      "auroc": 0.7570031881332397
     }
   },
   {
@@ -48,10 +48,10 @@
     "model_name": "nn",
     "feature_name": "cpc_finetuning_0450",
     "scores_valid": {
-      "auroc": 0.7604389190673828
+      "auroc": 0.7386756539344788
     },
     "scores_test": {
-      "auroc": 0.7850983142852783
+      "auroc": 0.7567228674888611
     }
   }
 ]

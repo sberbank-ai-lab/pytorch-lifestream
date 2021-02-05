@@ -48,12 +48,13 @@
     max_epochs: 60
 
     checkpoint_callback: {
-      save_interval: 10,
-      n_saved: 1000,
-      dirname: "models/mles_checkpoints/",
-      filename_prefix: "mles",
+      save_interval: 10
+      n_saved: 1000
+      dirname: "models/mles_checkpoints/"
+      filename_prefix: "mles"
       create_dir: true
-    },
+    }
+
     deterministic: true
   }
   logger_name: mles_model
@@ -67,44 +68,47 @@
         metric: cosine
     }
 
-    encoder_type: rnn,
+    encoder_type: rnn
     rnn: {
-      type: lstm,
-      hidden_size: 1024,
-      bidir: false,
+      type: lstm
+      hidden_size: 1024
+      bidir: false
       trainable_starter: static
-    },
+    }
+
     trx_encoder: {
-      use_batch_norm_with_lens: true,
-      norm_embeddings: false,
-      embeddings_noise: 0.0003,
+      use_batch_norm_with_lens: true
+      norm_embeddings: false
+      embeddings_noise: 0.0003
       embeddings: {
-        mcc: {in: 100, out: 24},
-        channel_type: {in: 4, out: 4},
-        currency: {in: 4, out: 4},
+        mcc: {in: 100, out: 24}
+        channel_type: {in: 4, out: 4}
+        currency: {in: 4, out: 4}
         trx_category: {in: 10, out: 4}
-      },
+      }
       numeric_values: {
         amount: identity
       }
-    },
-    head_layers: [
-      [NormEncoder, {}],
-    ]
+    }
+
+    head_layers: []
+    use_normalization_layer: true
+
     lr_scheduler: {
-      step_size: 10,
+      step_size: 10
       step_gamma: 0.9025
-    },
+    }
+
     train: {
-      sampling_strategy: HardNegativePair,
-      neg_count: 5,
-      loss: ContrastiveLoss,
-      margin: 0.5,
-      lr: 0.004,
+      sampling_strategy: HardNegativePair
+      neg_count: 5
+      loss: ContrastiveLoss
+      margin: 0.5
+      lr: 0.004
       weight_decay: 0.0
     }
-    norm_scores: false,
-  },
+    norm_scores: false
+  }
 
   model_path: "models/mles_model.p"
 

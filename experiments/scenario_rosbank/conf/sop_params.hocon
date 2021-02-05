@@ -32,7 +32,9 @@
         cnt_min: 30
         cnt_max: 300
       }
-      augmentations: []
+      augmentations: [
+        [SeqLenLimit, {max_seq_len: 1200}]
+      ]
       num_workers: 16
       batch_size: 256
     }
@@ -41,7 +43,7 @@
   seed_everything: 42
   trainer: {
     gpus: 1
-    auto_select_gpus: False
+    auto_select_gpus: false
 
     max_epochs: 100
 
@@ -53,44 +55,47 @@
     data_module_class: dltranz.data_load.data_module.sop_data_module.SopDataModuleTrain
     pl_module_class: dltranz.lightning_modules.sop_nsp_module.SopNspModule
 
-    encoder_type: rnn,
+    encoder_type: rnn
     rnn: {
-      type: lstm,
-      hidden_size: 128,
-      bidir: False,
+      type: lstm
+      hidden_size: 128
+      bidir: false
       trainable_starter: static
-    },
+    }
+
     trx_encoder: {
-      norm_embeddings: False,
-      embeddings_noise: 0.0003,
+      norm_embeddings: false
+      embeddings_noise: 0.0003
       embeddings: {
-        mcc: {in: 100, out: 24},
-        channel_type: {in: 4, out: 4},
-        currency: {in: 4, out: 4},
+        mcc: {in: 100, out: 24}
+        channel_type: {in: 4, out: 4}
+        currency: {in: 4, out: 4}
         trx_category: {in: 10, out: 4}
-      },
+      }
       numeric_values: {
         amount: identity
       }
     },
-    use_normalization_layer: true,
-    norm_scores: False,
-    score_metric: auroc,
+
+    use_normalization_layer: true
+    norm_scores: false
+    score_metric: auroc
+
     head: {
-      hidden_size: 512,
-      drop_p: 0.5,
-      pred_all_states: False
-    },
+      hidden_size: 512
+      drop_p: 0.5
+      pred_all_states: false
+    }
 
     lr_scheduler: {
-      ReduceLROnPlateau: true,
+      ReduceLROnPlateau: true
       patience: 10
-    },
+    }
+
     train: {
       loss: bce
-      lr: 0.001,
-      weight_decay: 0.0,
-      use_best_epoch: true
+      lr: 0.001
+      weight_decay: 0.0
     }
   }
 
@@ -99,7 +104,7 @@
   include "dataset_inference_file.hocon"
 
   output: {
-    path: data/sop_embeddings,
-    format: pickle,
+    path: data/sop_embeddings
+    format: pickle
   }
 }
