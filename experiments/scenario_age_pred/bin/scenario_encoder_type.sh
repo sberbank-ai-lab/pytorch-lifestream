@@ -41,8 +41,8 @@ python ../../pl_inference.py \
 rm results/scenario_age_pred__encoder_types.csv
 
 # Compare
-python -m scenario_age_pred compare_approaches --output_file "results/scenario_age_pred__encoder_types.csv" \
-    --n_workers 2 --models lgb --embedding_file_names \
-    "mles_embeddings.pickle"              \
-    "emb__encoder_lstm.pickle"            \
-    "emb__encoder_transf.pickle"
+python -m embeddings_validation \
+    --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 \
+    --conf_extra \
+      'report_file: "../results/scenario_age_pred__encoder_types.txt",
+      auto_features: ["../data/emb__encoder_*.pickle"]'

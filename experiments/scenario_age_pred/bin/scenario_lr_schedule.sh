@@ -38,10 +38,14 @@ python ../../pl_inference.py \
     --conf "conf/mles_params.hocon"
 
 
-Compare
-python -m scenario_age_pred compare_approaches --output_file "results/scenario_lr_schedule.csv" \
-    --n_workers 5 --models lgb --embedding_file_names \
-    "mles_embeddings.pickle"        \
-    "emb__reduce_on_plateau.pickle" \
-    "emb__reduce_on_plateau_x2epochs.pickle" \
-    "emb__cosine_annealing.pickle"
+# Compare
+rm results/rm results/scenario_lr_schedule.txt
+
+python -m embeddings_validation \
+    --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 \
+    --conf_extra \
+      'report_file: "../results/scenario_lr_schedule.txt",
+      auto_features: [
+          "../data/emb__reduce_on_plateau.pickle", 
+          "../data/emb__reduce_on_plateau_x2epochs.pickle",
+          "../data/emb__cosine_annealing.pickle"]'

@@ -42,9 +42,10 @@ do
 done
 
 # Compare
-python -m scenario_age_pred compare_approaches --output_file "results/scenario_age_pred__smpl_strategy.csv" \
-    --n_workers 2 --models lgb --embedding_file_names \
-    "mles_embeddings.pickle"                          \
-    "emb__smpl_strategy_AllPositivePair.pickle"       \
-    "emb__smpl_strategy_DistanceWeightedPair.pickle"  \
-    "emb__smpl_strategy_HardNegativePair_neg_count_*.pickle"
+rm results/scenario_age_pred__smpl_strategy.txt
+
+python -m embeddings_validation \
+  --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 \
+  --conf_extra \
+    'report_file: "../results/scenario_age_pred__smpl_strategy.txt",
+    auto_features: ["../data/emb__smpl_strategy_*.pickle"]'

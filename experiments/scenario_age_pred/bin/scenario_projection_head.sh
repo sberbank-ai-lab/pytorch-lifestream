@@ -17,14 +17,10 @@ do
 done
 
 # Compare
-python -m scenario_age_pred compare_approaches --output_file "results/scenario_age_pred__proj_head.csv" \
-    --embedding_file_names \
-    "emb__projection_head_rnn1600_prh256.pickle" \
-    "emb__projection_head_rnn0800_prh256.pickle" \
-    "emb__projection_head_rnn0400_prh256.pickle" \
-    "emb__projection_head_rnn1600_prh128.pickle" \
-    "emb__projection_head_rnn0800_prh128.pickle" \
-    "emb__projection_head_rnn0400_prh128.pickle" \
-    "emb__projection_head_rnn1600_prh064.pickle" \
-    "emb__projection_head_rnn0800_prh064.pickle" \
-    "emb__projection_head_rnn0400_prh064.pickle"
+rm results/scenario_age_pred__proj_head.txt
+
+python -m embeddings_validation \
+    --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 \
+    --conf_extra \
+      'report_file: "../results/scenario_age_pred__proj_head.txt",
+      auto_features: ["../data/emb__projection_head_*.pickle"]'

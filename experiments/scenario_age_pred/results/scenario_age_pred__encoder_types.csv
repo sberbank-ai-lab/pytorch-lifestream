@@ -1,6 +1,0 @@
-                                       oof_accuracy                                                         test_accuracy                                                        
-                                               mean t_int_l t_int_h    std                           values          mean t_int_l t_int_h    std                           values
-name                                                                                                                                                                             
-lgb_embeds: emb__encoder_lstm.pickle         0.6232  0.6191  0.6273 0.0033  [0.620 0.621 0.622 0.626 0.627]        0.6256  0.6223  0.6289 0.0027  [0.622 0.625 0.625 0.627 0.629]
-lgb_embeds: emb__encoder_transf.pickle       0.6163  0.6120  0.6205 0.0034  [0.612 0.614 0.616 0.619 0.621]        0.6273  0.6242  0.6304 0.0025  [0.625 0.626 0.627 0.628 0.631]
-lgb_embeds: mles_embeddings.pickle           0.6396  0.6338  0.6454 0.0047  [0.634 0.637 0.640 0.640 0.647]        0.6365  0.6319  0.6412 0.0037  [0.631 0.635 0.636 0.640 0.640]

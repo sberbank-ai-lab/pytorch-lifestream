@@ -30,8 +30,12 @@ python ../../pl_inference.py \
     --conf "conf/mles_params.hocon"
 
 # Compare
-python -m scenario_age_pred compare_approaches --output_file "results/scenario_age_pred__subseq_smpl_strategy.csv" \
-    --models "lgb" --embedding_file_names \
-    "mles_embeddings.pickle"        \
-    "emb__SplitRandom.pickle" \
-    "emb__SampleRandom.pickle"
+rm results/scenario_age_pred__subseq_smpl_strategy.txt
+
+python -m embeddings_validation \
+    --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 \
+    --conf_extra \
+      'report_file: "../results/scenario_age_pred__subseq_smpl_strategy.txt",
+      auto_features: [
+          "../data/emb__SplitRandom.pickle",
+          "../data/emb__SampleRandom.pickle"]'

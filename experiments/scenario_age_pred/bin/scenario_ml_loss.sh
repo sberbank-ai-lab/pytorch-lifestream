@@ -96,7 +96,10 @@ python ../../pl_inference.py \
     --conf "conf/mles_params.hocon"
 
 # Compare
-python -m scenario_age_pred compare_approaches --output_file "results/scenario_age_pred__loss.csv" \
-    --n_workers 2 --models lgb --embedding_file_names \
-    "mles_embeddings.pickle" \
-    "emb__loss_*.pickle"
+rm results/scenario_age_pred__loss.txt
+
+python -m embeddings_validation \
+    --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 \
+    --conf_extra \
+      'report_file: "../results/scenario_age_pred__loss.txt",
+      auto_features: ["../data/emb__loss_*.pickle"]'
