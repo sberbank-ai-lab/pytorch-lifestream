@@ -1,0 +1,14 @@
+load_source_data       : Loaded 26450577 rows from "/mnt/dnurlybay/pytorch-lifestream/experiments/scenario_age_pred/data/transactions_train.csv"
+load_source_data       : Loaded 17667328 rows from "/mnt/dnurlybay/pytorch-lifestream/experiments/scenario_age_pred/data/transactions_test.csv"
+load_source_data       : Loaded 44117905 rows in total
+_td_float              : To-float time transformation
+trx_to_features        : Feature collection in progress ...
+trx_to_features        : Prepared features for 50000 clients
+load_source_data       : Loaded 30000 rows from "/mnt/dnurlybay/pytorch-lifestream/experiments/scenario_age_pred/data/train_target.csv"
+load_source_data       : Loaded 30000 rows in total
+update_with_target     : Target updated for 50000 clients
+split_dataset          : Train size: 47000 clients
+split_dataset          : Test size: 3000 clients
+save_features          : Saved to: "/mnt/dnurlybay/pytorch-lifestream/experiments/scenario_age_pred/data/train_trx_file.parquet"
+save_features          : Saved to: "/mnt/dnurlybay/pytorch-lifestream/experiments/scenario_age_pred/data/test_trx_file.parquet"
+run                    : Data collected in 263 sec (0:04:23.285472)

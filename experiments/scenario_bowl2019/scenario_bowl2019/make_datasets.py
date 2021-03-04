@@ -168,7 +168,13 @@ def trx_to_features(df_data, config, mapping_dict=None):
         df_data[col] = df_data.groupby(col_client_id)[col].transform(enumerate_values)
 
     # column filter
-    used_columns = cols_category + cols_log_norm + cols_identity + cols_enumerate + ['event_time', col_client_id]
+    used_columns = (
+        cols_category 
+        + cols_log_norm 
+        + cols_identity 
+        + cols_enumerate 
+        + ['event_time', col_client_id]
+        )
     used_columns = [col for col in df_data.columns if col in used_columns]
 
     logger.info('Feature collection in progress ...')
@@ -194,7 +200,7 @@ def trx_to_features(df_data, config, mapping_dict=None):
 def update_with_target_bowl(source_data, features, data_path, target_files, col_client_id):
     df_target = pd.concat([pd.read_csv(os.path.join(data_path, file)) for file in target_files])
 
-    data = source_data.merge(df_target[['game_session','accuracy_group']], how = 'right')
+    data = source_data.merge(df_target[['game_session', 'accuracy_group']], how='right')
     data = data[(data.event_type == 'Assessment') & (data.event_code == 2000)] \
         [[col_client_id, 'game_session', 'timestamp', 'accuracy_group']]
     data['timestamp'] = pd.to_datetime(data['timestamp']).dt.tz_localize(None)

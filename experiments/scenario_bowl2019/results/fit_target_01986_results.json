@@ -1,1 +1,57 @@
-[{"fold_id": 0, "model_name": "nn", "feature_name": "target_scores_01986", "scores_valid": {"accuracy": 0.5940843297671492, "cnt_samples": 3178, "cnt_features": 32}, "scores_test": {"accuracy": 0.5823627287853578, "cnt_samples": 1803, "cnt_features": 32}}, {"fold_id": 1, "model_name": "nn", "feature_name": "target_scores_01986", "scores_valid": {"accuracy": 0.591252359974827, "cnt_samples": 3178, "cnt_features": 32}, "scores_test": {"accuracy": 0.574597892401553, "cnt_samples": 1803, "cnt_features": 32}}, {"fold_id": 2, "model_name": "nn", "feature_name": "target_scores_01986", "scores_valid": {"accuracy": 0.5867170286433743, "cnt_samples": 3177, "cnt_features": 32}, "scores_test": {"accuracy": 0.581808097615086, "cnt_samples": 1803, "cnt_features": 32}}, {"fold_id": 3, "model_name": "nn", "feature_name": "target_scores_01986", "scores_valid": {"accuracy": 0.5832546427447277, "cnt_samples": 3177, "cnt_features": 32}, "scores_test": {"accuracy": 0.5790349417637272, "cnt_samples": 1803, "cnt_features": 32}}, {"fold_id": 4, "model_name": "nn", "feature_name": "target_scores_01986", "scores_valid": {"accuracy": 0.5898646521875983, "cnt_samples": 3177, "cnt_features": 32}, "scores_test": {"accuracy": 0.5707154742096506, "cnt_samples": 1803, "cnt_features": 32}}]
+[
+  {
+    "fold_id": "0",
+    "model_name": "nn",
+    "feature_name": "target_scores_01986",
+    "scores_valid": {
+      "accuracy": 0.739635705947876
+    },
+    "scores_test": {
+      "accuracy": 0.7316384315490723
+    }
+  },
+  {
+    "fold_id": "1",
+    "model_name": "nn",
+    "feature_name": "target_scores_01986",
+    "scores_valid": {
+      "accuracy": 0.7506281137466431
+    },
+    "scores_test": {
+      "accuracy": 0.7440677881240845
+    }
+  },
+  {
+    "fold_id": "2",
+    "model_name": "nn",
+    "feature_name": "target_scores_01986",
+    "scores_valid": {
+      "accuracy": 0.7459170818328857
+    },
+    "scores_test": {
+      "accuracy": 0.7440677881240845
+    }
+  },
+  {
+    "fold_id": "3",
+    "model_name": "nn",
+    "feature_name": "target_scores_01986",
+    "scores_valid": {
+      "accuracy": 0.7242462038993835
+    },
+    "scores_test": {
+      "accuracy": 0.7265536785125732
+    }
+  },
+  {
+    "fold_id": "4",
+    "model_name": "nn",
+    "feature_name": "target_scores_01986",
+    "scores_valid": {
+      "accuracy": 0.776067852973938
+    },
+    "scores_test": {
+      "accuracy": 0.7790960669517517
+    }
+  }
+]

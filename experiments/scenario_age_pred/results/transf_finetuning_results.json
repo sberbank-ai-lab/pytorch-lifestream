@@ -1,0 +1,57 @@
+[
+  {
+    "fold_id": "0",
+    "model_name": "nn",
+    "feature_name": "transf_finetuning",
+    "scores_valid": {
+      "accuracy": 0.3677777647972107
+    },
+    "scores_test": {
+      "accuracy": 0.37433332204818726
+    }
+  },
+  {
+    "fold_id": "1",
+    "model_name": "nn",
+    "feature_name": "transf_finetuning",
+    "scores_valid": {
+      "accuracy": 0.32592591643333435
+    },
+    "scores_test": {
+      "accuracy": 0.3310000002384186
+    }
+  },
+  {
+    "fold_id": "2",
+    "model_name": "nn",
+    "feature_name": "transf_finetuning",
+    "scores_valid": {
+      "accuracy": 0.3690740764141083
+    },
+    "scores_test": {
+      "accuracy": 0.36899998784065247
+    }
+  },
+  {
+    "fold_id": "3",
+    "model_name": "nn",
+    "feature_name": "transf_finetuning",
+    "scores_valid": {
+      "accuracy": 0.3090740740299225
+    },
+    "scores_test": {
+      "accuracy": 0.35100001096725464
+    }
+  },
+  {
+    "fold_id": "4",
+    "model_name": "nn",
+    "feature_name": "transf_finetuning",
+    "scores_valid": {
+      "accuracy": 0.3275925815105438
+    },
+    "scores_test": {
+      "accuracy": 0.3426666557788849
+    }
+  }
+]

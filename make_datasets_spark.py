@@ -55,7 +55,7 @@ class DatasetConverter:
 
         ext = os.path.splitext(path)[1]
         if ext == '.csv':
-            return spark.read.csv(path, header=True)
+            return spark.read.option("escape", "\"").csv(path, header=True)
         elif ext == '.parquet':
             return spark.read.parquet(path)
         else:
@@ -172,6 +172,9 @@ class DatasetConverter:
         return df
 
     def remove_long_trx(self, df, max_trx_count, col_client_id):
+        """
+        This function select the last max_trx_count transactions
+        """
         df = df.withColumn('_cn', F.count(F.lit(1)).over(Window.partitionBy(col_client_id)))
         df = df.withColumn('_rn', F.row_number().over(
             Window.partitionBy(col_client_id).orderBy(F.col('event_time').desc())))
@@ -280,7 +283,7 @@ class DatasetConverter:
         Random(salt).shuffle(s_clients)
 
         # split client list
-        Nrows_test = int(len(s_clients) * test_size)
+        Nrows_test = int(len(s_clients) * test_size) + 1
         s_clients_train = s_clients[:-Nrows_test]
         s_clients_test = s_clients[-Nrows_test:]
 
@@ -355,7 +358,6 @@ class DatasetConverter:
             # load target
             df_target = self.load_target()
             df_target.persist()
-
             if len(self.config.col_target) == 1:
                 col_target = self.config.col_target[0]
             else:
@@ -391,7 +393,6 @@ class DatasetConverter:
             save_test_id = True
         else:
             train = client_features
-
         # description
         spark.sparkContext.setLocalProperty('callSite.short', 'save_features')
         self.save_features(
@@ -411,7 +412,7 @@ class DatasetConverter:
 
         _duration = datetime.datetime.now() - _start
         logger.info(f'Data collected in {_duration.seconds} sec ({_duration})')
-
+        
     def load_target(self):
         df_target = self.load_source_data(self.config.target_files)
         return df_target
