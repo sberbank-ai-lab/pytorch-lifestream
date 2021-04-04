@@ -29,6 +29,9 @@ from tqdm.auto import tqdm
 from dltranz.trx_encoder import PaddedBatch
 from dltranz.data_load.data_module.coles_data_module import ColesDataModuleTrain
 
+import torch.multiprocessing
+torch.multiprocessing.set_sharing_strategy('file_system')
+
 logger = logging.getLogger(__name__)
 
 
