@@ -18,11 +18,11 @@
       ]
       split_strategy: {
         split_strategy: "SampleSlices"
-        split_count: 20
-        cnt_min: 40
+        split_count: 30
+        cnt_min: 100
         cnt_max: 150
       }
-      num_workers: 4
+      num_workers: 0
       batch_size: 128
     }
     valid: {
@@ -31,11 +31,11 @@
       ]
       split_strategy: {
         split_strategy: "SampleSlices"
-        split_count: 20
-        cnt_min: 40
+        split_count: 30
+        cnt_min: 100
         cnt_max: 150
       }
-      num_workers: 4
+      num_workers: 0
       batch_size: 128
     }
   }
@@ -88,7 +88,7 @@
 
     cpc: {
       n_forward_steps: 6
-      n_negatives: 10
+      n_negatives: 20
     }
 
     lr_scheduler: {
