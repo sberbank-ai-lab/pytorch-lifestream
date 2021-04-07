@@ -1,0 +1,23 @@
+{
+    include "embeddings_validation.hocon"
+
+    report_file: "../results/scenario_gender_baselines_supervised_cpc_v2.txt"
+
+    features: {
+    }
+
+    external_scores: {
+        fit_target: "../results/fit_target_results.json"
+        cpc_v2_finetuning: "../results/cpc_v2_finetuning_results.json"
+    }
+
+    report: {
+        is_check_train: false
+        error_handling: fail
+        print_all_metrics: false
+
+        metrics: {
+            accuracy: {float_format: "{:.3f}", baseline_key=["nn", "target_scores"], split_columns: true}
+        }
+    }
+}

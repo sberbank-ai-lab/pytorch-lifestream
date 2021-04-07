@@ -1,0 +1,31 @@
+{
+    include "embeddings_validation.hocon"
+
+    report_file: "../results/scenario_gender_baselines_unsupervised_cpc_v2.txt"
+
+    features: {
+        baseline: {
+            enabled: true
+            read_params: {file_name: ../data/agg_feat_embed.pickle}
+            target_options: {}
+        }
+        cpc_v2_embeddings: {
+            enabled: true
+            read_params: {file_name: ../data/cpc_v2_embeddings.pickle}
+            target_options: {}
+        }
+    }
+
+    external_scores: {
+    }
+
+    report: {
+        is_check_train: false
+        error_handling: fail
+        print_all_metrics: false
+
+        metrics: {
+            accuracy: {float_format: "{:.3f}", baseline_key=["lgbm", "baseline"], split_columns: true}
+        }
+    }
+}
