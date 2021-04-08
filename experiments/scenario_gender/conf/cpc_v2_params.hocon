@@ -42,7 +42,7 @@
     gpus: 1
     auto_select_gpus: false
 
-    max_epochs: 30
+    max_epochs: 100
 
     checkpoint_callback: false
     deterministic: true

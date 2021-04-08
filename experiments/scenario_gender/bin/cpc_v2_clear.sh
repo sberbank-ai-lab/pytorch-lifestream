@@ -1,0 +1,4 @@
+rm -rf conf/embeddings_validation.work/
+rm -rf lightning_logs/*
+rm -rf models/*
+rm -rf __pycache__

@@ -25,6 +25,7 @@
         print_all_metrics: false
 
         metrics: {
+            auroc: {float_format: "{:.3f}", baseline_key=["lgbm", "baseline"], split_columns: true}
             accuracy: {float_format: "{:.3f}", baseline_key=["lgbm", "baseline"], split_columns: true}
         }
     }
