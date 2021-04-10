@@ -8,7 +8,10 @@
 
     external_scores: {
         fit_target: "../results/fit_target_results.json"
-        cpc_v2_finetuning: "../results/cpc_v2_finetuning_results.json"
+        cpc_v2_finetuning_split_count_20: "../results/cpc_v2_sub_seq_sampl_strategy_split_count_20.json"
+        cpc_v2_finetuning_split_count_30: "../results/cpc_v2_sub_seq_sampl_strategy_split_count_30.json"
+        cpc_v2_finetuning_split_count_40: "../results/cpc_v2_sub_seq_sampl_strategy_split_count_40.json"
+        cpc_v2_finetuning_split_count_50: "../results/cpc_v2_sub_seq_sampl_strategy_split_count_50.json"
     }
 
     report: {
@@ -17,7 +20,7 @@
         print_all_metrics: false
 
         metrics: {
-            accuracy: {float_format: "{:.3f}", baseline_key=["nn", "target_scores"], split_columns: true}
+            auroc: {float_format: "{:.3f}", baseline_key=["nn", "target_scores"], split_columns: true}
         }
     }
 }

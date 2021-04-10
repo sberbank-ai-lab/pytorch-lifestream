@@ -54,7 +54,7 @@
   logger_name: cpc_v2_finetuning
 
   params: {
-    score_metric: accuracy
+    score_metric: [auroc, accuracy]
 
     encoder_type: pretrained
     pretrained: {
