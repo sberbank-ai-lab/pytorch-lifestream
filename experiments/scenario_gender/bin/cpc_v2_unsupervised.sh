@@ -11,7 +11,6 @@ for i in 20 30 40 50; do
 
     python ../../pl_train_module.py \
         logger_name=${SC_SUFFIX} \
-        trainer.max_epochs=2 \
         data_module.train.min_seq_len=$min_seq_len \
         data_module.train.split_strategy.split_count=$split_count \
         \
