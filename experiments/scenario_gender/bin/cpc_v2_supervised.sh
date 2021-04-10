@@ -1,5 +1,5 @@
 # Train a supervised model and save scores to the file
-python ../../pl_fit_target.py trainer.max_epochs=2 --conf conf/pl_fit_target.hocon
+python ../../pl_fit_target.py --conf conf/pl_fit_target.hocon
 
 # Fine tune the CPC model in supervised mode and save scores to the file
 for i in 20 30 40 50; do

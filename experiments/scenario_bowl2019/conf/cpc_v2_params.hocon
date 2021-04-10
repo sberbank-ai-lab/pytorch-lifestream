@@ -10,32 +10,30 @@
       valid_size: 0.05
       valid_split_seed: 42
     }
+    
     train: {
-      min_seq_len: 25
+      min_seq_len: 200  # split_count * 5
       augmentations: [
-        [DropoutTrx, {trx_dropout: 0.01}]
-        [SeqLenLimit, {max_seq_len: 5000}]
+        [SeqLenLimit, {max_seq_len: 1200}]
       ]
       split_strategy: {
-        split_strategy: "SampleSlices"
-        split_count: 30
-        cnt_min: 100
-        cnt_max: 150
+        split_strategy: "SampleUniformBySplitCount"
+        split_count: 40
       }
-      num_workers: 0
+      num_workers: 16
       batch_size: 128
     }
+
     valid: {
+      min_seq_len: 200  # split_count * 5
       augmentations: [
-        [SeqLenLimit, {max_seq_len: 5000}]
+        [SeqLenLimit, {max_seq_len: 1200}]
       ]
       split_strategy: {
-        split_strategy: "SampleSlices"
-        split_count: 30
-        cnt_min: 100
-        cnt_max: 150
+        split_strategy: "SampleUniformBySplitCount"
+        split_count: 40
       }
-      num_workers: 0
+      num_workers: 16
       batch_size: 128
     }
   }
@@ -45,10 +43,11 @@
     gpus: 1
     auto_select_gpus: false
 
-    max_epochs: 15
+    max_epochs: 30
 
     checkpoint_callback: false
     deterministic: true
+    # profiler: simple
   }
   logger_name: cpc_v2_model
 
@@ -66,7 +65,7 @@
 
     rnn_agg: {
       type: gru
-      hidden_size: 128
+      hidden_size: 256
       bidir: false
       trainable_starter: static
     }
@@ -88,16 +87,16 @@
 
     cpc: {
       n_forward_steps: 6
-      n_negatives: 20
+      n_negatives: 30
     }
 
     lr_scheduler: {
-      step_size: 5
-      step_gamma: 0.5
+      step_size: 10
+      step_gamma: 0.9525
     }
 
     train: {
-      lr: 0.002
+      lr: 0.0005
       weight_decay: 0.0
     }
     
@@ -108,7 +107,7 @@
   include "dataset_inference_file.hocon"
 
   output: {
-    path: data/cpc_v2_embeddings,
-    format: pickle,
+    path: data/cpc_v2_embeddings
+    format: pickle
   }
 }

@@ -16,9 +16,9 @@
     }
 
     train: {
-        min_seq_len: 0
+        min_seq_len: 1
         augmentations: [
-          [RandomSlice, {min_len: 500, max_len: 750}]
+          [RandomSlice, {min_len: 150, max_len: 200}]
           [DropoutTrx, {trx_dropout: 0.005}]
         ]
         num_workers: 16
@@ -29,7 +29,7 @@
         augmentations: [
           [SeqLenLimit, {max_seq_len: 1200}]
         ]
-        num_workers: 8
+        num_workers: 16
         batch_size: 512
     }
   }
@@ -45,7 +45,7 @@
     gpus: 1
     auto_select_gpus: false
 
-    max_epochs: 15
+    max_epochs: 25
     log_every_n_steps: 10
 
     checkpoint_callback: false
