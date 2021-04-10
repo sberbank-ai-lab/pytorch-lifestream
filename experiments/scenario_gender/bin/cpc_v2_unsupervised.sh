@@ -28,6 +28,6 @@ done
 
 rm results/scenario_gender_baselines_unsupervised_cpc_v2.txt
 python -m embeddings_validation \
-    --conf conf/embeddings_validation_short.hocon --workers 10 --total_cpu_count 20 --local_scheduler \
+    --conf conf/cpc_v2_embeddings_validation_baselines_unsupervised.hocon --workers 10 --total_cpu_count 20 --local_scheduler \
     --conf_extra \
       'auto_features: ["../data/emb__cpc_v2_sub_seq_sampl_strategy*.pickle"]'
