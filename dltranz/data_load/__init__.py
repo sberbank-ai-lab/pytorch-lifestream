@@ -377,12 +377,20 @@ class ConvertingTrxDataset(Dataset):
 
 
 class ProcessDataset(Dataset):
-    def __init__(self, delegate, process_fun):
+    def __init__(self, delegate, process_fun, style='map'):
         self.delegate = delegate
         self.process_fun = process_fun
+        if hasattr(delegate, 'style'):
+            self.style = delegate.style
+        else:
+            self.style = style
 
     def __len__(self):
         return len(self.delegate)
+
+    def __iter__(self):
+        for rec in iter(self.delegate):
+            yield self._one_item(rec)
 
     def __getitem__(self, idx):
         item = self.delegate[idx]
@@ -425,6 +433,20 @@ def padded_collate(batch):
         new_y = torch.from_numpy(new_y)
 
     return PaddedBatch(new_x, lengths), new_y
+
+
+def padded_collate_distribution_target(batch):
+
+    padded_batch, new_y = padded_collate(batch)
+
+    keys = ['neg_sum', 'neg_distribution', 'pos_sum', 'pos_distribution']
+
+    if new_y.shape[1] > 2:
+        new_y = {key : new_y[:, i] for i, key in enumerate(keys)}
+    else:
+        new_y = {key : (new_y[:, i - 2] if i > 1 else 0) for i, key in enumerate(keys)}
+
+    return padded_batch, new_y
 
 
 def padded_collate_wo_target(batch):
