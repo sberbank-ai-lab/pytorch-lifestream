@@ -91,6 +91,11 @@ class MAPE(DistributionTargets):
         return mape_metric(self.sign * torch.exp(y_hat - 1), y[:, None])
 
 
+class LogAccuracy(pl.metrics.Accuracy):
+    def forward(self, preds, target):
+        return super().forward(preds.exp(), target)
+
+
 class R_squared(DistributionTargets):
     def __init__(self, col_name):
         super().__init__(col_name)
@@ -130,7 +135,7 @@ class SequenceToTarget(pl.LightningModule):
         # metrics
         d_metrics = {
             'auroc': EpochAuroc(),
-            'accuracy': pl.metrics.Accuracy(),
+            'accuracy': LogAccuracy(),
             'R2n': R_squared('neg_sum'),
             'MSEn': MSE('neg_sum'),
             'MAPEn': MAPE('neg_sum'),
