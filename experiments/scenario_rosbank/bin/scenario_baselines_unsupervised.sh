@@ -31,6 +31,8 @@ python ../../pl_train_module.py \
     data_module.train.split_strategy.split_count=2 \
     data_module.valid.split_strategy.split_count=2 \
     params.validation_metric_params.K=1 \
+    trainer.max_epochs=120 \
+    params.lr_scheduler.step_size=60 \
     model_path="models/mles_model2.p" \
     logger_name="mles_model2" \
     --conf conf/mles_params.hocon
