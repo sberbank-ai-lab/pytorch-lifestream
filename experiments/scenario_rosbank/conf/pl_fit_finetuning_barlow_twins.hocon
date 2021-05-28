@@ -60,12 +60,14 @@
     pretrained: {
         pl_module_class: dltranz.lightning_modules.coles_module.CoLESModule
         model_path: "models/barlow_twins_model_for_finetuning.p"
-        lr: 0.0001
+        lr: 0.00001
     }
 
     head_layers: [
-      [BatchNorm1d, {num_features: "{seq_encoder.embedding_size}"}]
-      [Linear, {"in_features": "{seq_encoder.embedding_size}", "out_features": 1}]
+      [Linear, {"in_features": "{seq_encoder.embedding_size}", "out_features": 64}]
+      [BatchNorm1d, {num_features: 64}]
+      [ReLU, {}]
+      [Linear, {"in_features": "64", "out_features": 1}]
       [Sigmoid, {}]
       [Squeeze, {}]
     ]
