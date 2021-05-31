@@ -41,6 +41,9 @@ python ../../pl_inference.py    \
     output.path="data/mles2_embeddings" \
     --conf conf/mles_params.hocon
 
+# Train the Replaced Token Detection (RTD) model; inference
+python ../../pl_train_module.py --conf conf/barlow_twins_params.hocon
+python ../../pl_inference.py --conf conf/barlow_twins_params.hocon
 
 
 # Compare
