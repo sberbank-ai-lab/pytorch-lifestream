@@ -92,8 +92,22 @@ class MAPE(DistributionTargets):
 
 
 class LogAccuracy(pl.metrics.Accuracy):
-    def forward(self, preds, target):
-        return super().forward(preds.exp(), target)
+    def __init__(self, **params):
+        super().__init__(**params)
+
+        self.add_state('correct', default=torch.tensor([0.0]))
+        self.add_state('total', default=torch.tensor([0.0]))
+
+    def update(self, preds, target):
+        if len(preds.shape) == 1:
+            preds = (preds > 0.5).to(dtype=target.dtype)
+        else:
+            preds = torch.argmax(preds, dim=1)
+        self.correct += torch.sum(preds == target)
+        self.total += target.numel()
+
+    def compute(self):
+        return self.correct / self.total
 
 
 class R_squared(DistributionTargets):

@@ -276,90 +276,105 @@ python ../../pl_train_module.py \
     --conf "conf/barlow_twins_params.hocon"
 
 
-export SC_SUFFIX="bt_tuning_v11"
-export SC_VERSION=0
-export SC_SUFFIX="bt_tuning_v12"
-export SC_VERSION=1
-export SC_SUFFIX="bt_tuning_v13"
-export SC_VERSION=0
+export SC_SUFFIX="bt_tuning_v14"
+python ../../pl_train_module.py \
+    logger_name=${SC_SUFFIX} \
+    data_module.train.batch_size=1024 \
+    params.train.lambd=0.04 \
+    params.train.lr=0.004 \
+    params.lr_scheduler.step_size=10 \
+    trainer.max_epochs=600 \
+    params.train.checkpoints_every_n_val_epochs=10 trainer.checkpoint_callback=none \
+    model_path="models/mlm__$SC_SUFFIX.p" \
+    --conf "conf/barlow_twins_params.hocon"
+
+export SC_SUFFIX="bt_tuning_v15"
+python ../../pl_train_module.py \
+    logger_name=${SC_SUFFIX} \
+    data_module.train.batch_size=1024 \
+    params.train.lambd=0.04 \
+    params.train.lr=0.004 \
+    params.lr_scheduler.step_size=50 \
+    trainer.max_epochs=600 \
+    params.train.checkpoints_every_n_val_epochs=10 trainer.checkpoint_callback=none \
+    model_path="models/mlm__$SC_SUFFIX.p" \
+    --conf "conf/barlow_twins_params.hocon"
+
+export SC_SUFFIX="bt_tuning_v16"
+python ../../pl_train_module.py \
+    logger_name=${SC_SUFFIX} \
+    data_module.train.batch_size=1024 \
+    params.train.lambd=0.02 \
+    params.train.lr=0.004 \
+    params.lr_scheduler.step_size=50 \
+    trainer.max_epochs=600 \
+    params.train.checkpoints_every_n_val_epochs=10 trainer.checkpoint_callback=none \
+    model_path="models/mlm__$SC_SUFFIX.p" \
+    --conf "conf/barlow_twins_params.hocon"
+
+export SC_SUFFIX="bt_tuning_v18"
+python ../../pl_train_module.py \
+    logger_name=${SC_SUFFIX} \
+    data_module.train.batch_size=512 \
+    params.train.lambd=0.04 \
+    params.train.lr=0.004 \
+    params.lr_scheduler.step_size=40 \
+    trainer.max_epochs=600 \
+    params.train.checkpoints_every_n_val_epochs=10 trainer.checkpoint_callback=none \
+    model_path="models/mlm__$SC_SUFFIX.p" \
+    --conf "conf/barlow_twins_params.hocon"
 
 
+export SC_SUFFIX="bt_tuning_v17"; export SC_VERSION=1
+export SC_SUFFIX="bt_tuning_v15"; export SC_VERSION=0
+export SC_SUFFIX="bt_tuning_v16"; export SC_VERSION=0
+
+ls "lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/"
+# ep = 9; st = 79; {i: (st + 1) // (ep + 1) * (i + 1) - 1 for i in range(ep, 600, 10)}
 
 python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=9-step\=589.ckpt" \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=9-step\=79.ckpt" \
     output.path="data/emb__${SC_SUFFIX}_009" \
     --conf "conf/barlow_twins_params.hocon"
 python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=19-step\=1179.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_019" \
-    --conf "conf/barlow_twins_params.hocon"
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=29-step\=1769.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_029" \
-    --conf "conf/barlow_twins_params.hocon"
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=39-step\=2359.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_039" \
-    --conf "conf/barlow_twins_params.hocon"
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=49-step\=2949.ckpt" \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=49-step\=399.ckpt" \
     output.path="data/emb__${SC_SUFFIX}_049" \
     --conf "conf/barlow_twins_params.hocon"
 python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=59-step\=3539.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_059" \
-    --conf "conf/barlow_twins_params.hocon"
-
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=69-step\=4129.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_069" \
-    --conf "conf/barlow_twins_params.hocon"
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=79-step\=4719.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_079" \
-    --conf "conf/barlow_twins_params.hocon"
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=89-step\=5309.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_089" \
-    --conf "conf/barlow_twins_params.hocon"
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=99-step\=5899.ckpt" \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=99-step\=799.ckpt" \
     output.path="data/emb__${SC_SUFFIX}_099" \
     --conf "conf/barlow_twins_params.hocon"
-
 python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=109-step\=6489.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_109" \
-    --conf "conf/barlow_twins_params.hocon"
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=119-step\=7079.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_119" \
-    --conf "conf/barlow_twins_params.hocon"
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=129-step\=7669.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_129" \
-    --conf "conf/barlow_twins_params.hocon"
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=139-step\=8259.ckpt" \
-    output.path="data/emb__${SC_SUFFIX}_139" \
-    --conf "conf/barlow_twins_params.hocon"
-
-python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=149-step\=8849.ckpt" \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=149-step\=1199.ckpt" \
     output.path="data/emb__${SC_SUFFIX}_149" \
     --conf "conf/barlow_twins_params.hocon"
-
 python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=199-step\=11799.ckpt" \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=199-step\=1599.ckpt" \
     output.path="data/emb__${SC_SUFFIX}_199" \
     --conf "conf/barlow_twins_params.hocon"
 python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=249-step\=14749.ckpt" \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=249-step\=1999.ckpt" \
     output.path="data/emb__${SC_SUFFIX}_249" \
     --conf "conf/barlow_twins_params.hocon"
 python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
-    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=299-step\=17699.ckpt" \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=299-step\=2399.ckpt" \
     output.path="data/emb__${SC_SUFFIX}_299" \
+    --conf "conf/barlow_twins_params.hocon"
+python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=349-step\=2799.ckpt" \
+    output.path="data/emb__${SC_SUFFIX}_349" \
+    --conf "conf/barlow_twins_params.hocon"
+python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=399-step\=3199.ckpt" \
+    output.path="data/emb__${SC_SUFFIX}_399" \
+    --conf "conf/barlow_twins_params.hocon"
+python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=449-step\=3599.ckpt" \
+    output.path="data/emb__${SC_SUFFIX}_449" \
+    --conf "conf/barlow_twins_params.hocon"
+python ../../pl_inference.py     inference_dataloader.loader.batch_size=200 \
+    model_path="lightning_logs/${SC_SUFFIX}/version_${SC_VERSION}/checkpoints/epoch\=499-step\=3999.ckpt" \
+    output.path="data/emb__${SC_SUFFIX}_499" \
     --conf "conf/barlow_twins_params.hocon"
 
 
@@ -372,114 +387,3 @@ python -m embeddings_validation \
       auto_features: ["../data/emb__bt_tuning_*.pickle", "../data/barlow_twins_embeddings.pickle"]'
 less -S results/res_bt_tuning.txt
 
-
-
-
-###########
-# Valid auroc     : 0.789 [0.790, 0.784, 0.797, 0.788, 0.788], Test  auroc     : 0.827 [0.817, 0.829, 0.830, 0.829, 0.830]
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_base" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-# Valid auroc     : 0.786 [0.788, 0.779, 0.792, 0.786, 0.787], Test  auroc     : 0.827 [0.817, 0.828, 0.830, 0.829, 0.829]
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v01" \
-  params.train.lr=0.005 \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-# Valid auroc     : 0.787 [0.788, 0.779, 0.794, 0.787, 0.787], Test  auroc     : 0.824 [0.814, 0.825, 0.828, 0.826, 0.827]
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v02" \
-  params.lr_scheduler.step_size=2 \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-# Valid auroc     : 0.788 [0.784, 0.776, 0.791, 0.790, 0.798], Test  auroc     : 0.812 [0.801, 0.811, 0.817, 0.815, 0.817]
-#  seq_enc lr=0.001
-# more head 256
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v05" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-
-
-# Valid auroc     : 0.788 [0.789, 0.784, 0.796, 0.787, 0.786], Test  auroc     : 0.827 [0.819, 0.829, 0.830, 0.829, 0.831]
-# freeze seq_enc
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v03" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-# Valid auroc     : 0.788 [0.787, 0.776, 0.792, 0.791, 0.793], Test  auroc     : 0.821 [0.815, 0.823, 0.822, 0.826, 0.820]
-# freeze seq_enc
-# more head 256
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v04" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-# Valid auroc     : 0.789 [0.789, 0.778, 0.796, 0.788, 0.793], Test  auroc     : 0.825 [0.817, 0.826, 0.825, 0.827, 0.829]
-# freeze seq_enc
-# more head 64
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v07" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-
-# Valid auroc     : 0.790 [0.791, 0.780, 0.797, 0.790, 0.794], Test  auroc     : 0.827 [0.820, 0.827, 0.830, 0.828, 0.830]
-# freeze seq_enc
-# more head 64
-# minus first bn
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v07" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-
-# Valid auroc     : 0.792 [0.792, 0.781, 0.797, 0.792, 0.796], Test  auroc     : 0.826 [0.818, 0.826, 0.828, 0.826, 0.830]
-# seq_enc  lr: 0.0001
-# more head 64
-# minus first bn
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v08" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-# Valid auroc     : 0.789 [0.790, 0.779, 0.795, 0.787, 0.793], Test  auroc     : 0.823 [0.817, 0.820, 0.825, 0.823, 0.828]
-# seq_enc  lr: 0.0001
-# more head 64-8
-# minus first bn
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v09" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-# Valid auroc     : 0.788 [0.793, 0.781, 0.792, 0.784, 0.791], Test  auroc     : 0.824 [0.816, 0.826, 0.824, 0.827, 0.829]
-# seq_enc  lr: 0.0001
-# more head 64-8
-# minus first bn
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v10" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-
-# Valid auroc     : 0.791 [0.791, 0.780, 0.797, 0.791, 0.794], Test  auroc     : 0.827 [0.819, 0.827, 0.828, 0.828, 0.831]
-# seq_enc  lr: 0.00001
-# more head 64
-# minus first bn
-python ../../pl_fit_target.py \
-  logger_name="bt_ftning_v11" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-
-#
-# seq_enc  lr: 0.00001
-# more head 64
-# minus first bn
-python ../../pl_fit_target.py \
-  trainer.max_epochs=10 \
-  logger_name="bt_ftning_v12" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
-
-#
-# seq_enc  lr: 0.00001
-# more head 64
-# minus first bn
-python ../../pl_fit_target.py \
-  trainer.max_epochs=6 \
-  logger_name="bt_ftning_v13" \
-  --conf conf/pl_fit_finetuning_barlow_twins.hocon
