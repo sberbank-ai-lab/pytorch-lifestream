@@ -3,6 +3,7 @@ from bisect import bisect_right
 
 import numpy as np
 import torch
+
 from tqdm import tqdm
 from transformers import get_linear_schedule_with_warmup
 from transformers.optimization import Adafactor, AdafactorSchedule
@@ -112,7 +113,7 @@ def get_lr_scheduler(optimizer, params):
             logger.info('MultiGammaScheduler used')
 
     elif params['lr_scheduler'].get('CosineAnnealing', False):
-        T_max = params['train'].get('n_epoch', params['train.lr_scheduler.n_epoch'])
+        T_max = params['train'].get('n_epoch', params['lr_scheduler.n_epoch'])
         eta_min = params['lr_scheduler'].get('eta_min', 0)
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=T_max, eta_min=eta_min)
         logger.info('CosineAnnealingLR lr_scheduler used')
@@ -159,7 +160,7 @@ def get_lr_scheduler(optimizer, params):
     return scheduler
 
 
-def score_model(model, valid_loader, params):
+def score_model(model, valid_loader, params=None):
     """
       - extended valid_loader. input format: x, * in batch:
       - output: pred(x), * in score_model
@@ -167,6 +168,9 @@ def score_model(model, valid_loader, params):
     Returns:
 
     """
+    if params is None:
+        params = {}
+
     if torch.cuda.is_available():
         device = torch.device(params.get('device', 'cuda'))
     else:
