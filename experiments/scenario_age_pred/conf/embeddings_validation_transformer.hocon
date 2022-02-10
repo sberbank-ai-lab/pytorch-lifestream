@@ -9,9 +9,9 @@
             read_params: {file_name: ../data/mles_embeddings.pickle}
             target_options: {}
         }
-        transformer__embeddings: {
+        transf_embeddings: {
             enabled: true
-            read_params: {file_name: ../data/transformer_embeddings.pickle}
+            read_params: {file_name: ../data/transf_embeddings.pickle}
             target_options: {}
         }
     }
@@ -25,7 +25,7 @@
         print_all_metrics: false
 
         metrics: {
-            accuracy: {float_format: "{:.3f}", baseline_key=["lgbm", "baseline"], split_columns: true}
+            accuracy: {float_format: "{:.3f}", baseline_key=["lgbm", "mles_embeddings"], split_columns: true}
         }
     }
 }
