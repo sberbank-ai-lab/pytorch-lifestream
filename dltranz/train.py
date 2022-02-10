@@ -30,11 +30,11 @@ def get_optimizer(model, params):
     optimiser_params = params.get('train.optimiser_params', None)
     if optimiser_params is None:
         parameters = model.parameters()
-    elif: optimiser_params.get('type', None) == 'Adafactor':
+    elif optimiser_params.get('type', None) == 'Adafactor':
         optimizer = Adafactor(model.parameters(), scale_parameter=True, relative_step=True, warmup_init=True, lr=None)
         Adafactor(model.parameters(), scale_parameter=False, relative_step=False, warmup_init=False, lr=params['train.lr'])
         logger.info("Ada factor optimizer is used")
-    elif: optimiser_params.get('type', None) == 'SWA':
+    elif optimiser_params.get('type', None) == 'SWA':
         optimizer = SWA(optimizer)
     else:
         parameters = []

@@ -102,7 +102,7 @@
     train: {
       swa: false
       sampling_strategy: HardNegativePair
-      # gradient_clip_val: 1
+      gradient_clip_val: 1
       neg_count: 5
       loss: ContrastiveLoss
       margin: 0.5
