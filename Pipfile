@@ -28,6 +28,7 @@ pytorch-lightning = ">=1.0.3"
 luigi = ">=2.0.0"
 embeddings-validation = {editable = true, path = "embeddings_validation_src/."}
 pytorch-lifestream = {editable = true, path = "."}
+transformers = ">=4.16.2"
 
 [requires]
 python_version = "3.8"
