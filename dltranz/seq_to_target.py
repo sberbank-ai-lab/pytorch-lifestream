@@ -4,7 +4,7 @@ from copy import deepcopy
 import pytorch_lightning as pl
 import torch
 import numpy as np
-from pytorch_lightning.metrics.functional.classification import auroc
+from torchmetrics.functional.classification import auroc
 
 from dltranz.loss import get_loss, cross_entropy, kl, mape_metric, mse_loss, r_squared
 from dltranz.seq_encoder import create_encoder
