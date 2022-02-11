@@ -29,6 +29,7 @@ luigi = ">=2.0.0"
 embeddings-validation = {editable = true, path = "embeddings_validation_src/."}
 pytorch-lifestream = {editable = true, path = "."}
 transformers = ">=4.16.2"
+setuptools = "==59.5.0"
 
 [requires]
 python_version = "3.8"
